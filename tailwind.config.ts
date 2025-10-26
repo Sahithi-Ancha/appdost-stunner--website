@@ -57,8 +57,8 @@ export default {
         'gradient-hero': 'var(--gradient-hero)',
       },
       fontFamily: {
-        'sans': ['Space Grotesk', 'system-ui', 'sans-serif'],
-        'heading': ['Outfit', 'system-ui', 'sans-serif'],
+        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'heading': ['Poppins', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         'soft': 'var(--shadow-sm)',

@@ -1,6 +1,13 @@
 import { ExternalLink, Github } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import AnimatedBackground from './AnimatedBackground';
+import project1 from '@/assets/project-1.jpg';
+import project2 from '@/assets/project-2.jpg';
+import project3 from '@/assets/project-3.jpg';
+import project4 from '@/assets/project-4.jpg';
+import project5 from '@/assets/project-5.jpg';
+import project6 from '@/assets/project-6.jpg';
 
 const Portfolio = () => {
   const projects = [
@@ -8,43 +15,46 @@ const Portfolio = () => {
       title: 'FinTrack Pro',
       category: 'Financial Technology',
       description: 'Next-generation financial management platform with AI-powered insights and analytics.',
-      gradient: 'from-emerald-600 to-teal-600',
+      image: project1,
     },
     {
       title: 'MediCare Connect',
       category: 'Healthcare Platform',
       description: 'Comprehensive telehealth solution connecting patients with healthcare providers seamlessly.',
-      gradient: 'from-blue-600 to-cyan-600',
+      image: project2,
     },
     {
       title: 'EduVerse',
       category: 'Education Technology',
       description: 'Interactive learning platform with gamification and personalized learning paths.',
-      gradient: 'from-purple-600 to-pink-600',
+      image: project3,
     },
     {
       title: 'ShopFlow',
       category: 'E-Commerce',
       description: 'Modern retail platform with AI recommendations and seamless checkout experience.',
-      gradient: 'from-orange-600 to-amber-600',
+      image: project4,
     },
     {
       title: 'TravelHub',
       category: 'Travel & Tourism',
       description: 'All-in-one travel planning and booking platform with real-time updates.',
-      gradient: 'from-rose-600 to-red-600',
+      image: project5,
     },
     {
       title: 'GreenEnergy Dashboard',
       category: 'Sustainability',
       description: 'Real-time energy monitoring and optimization platform for sustainable living.',
-      gradient: 'from-green-600 to-emerald-600',
+      image: project6,
     },
   ];
 
   return (
     <section id="portfolio" className="py-24 bg-muted/30 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Animated Background */}
+      <AnimatedBackground />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4">
@@ -61,14 +71,19 @@ const Portfolio = () => {
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="group overflow-hidden bg-card border-border hover:shadow-floating transition-all duration-500 cursor-pointer"
+              className="group overflow-hidden bg-card border-border hover:shadow-floating transition-all duration-500 hover:-translate-y-2 cursor-pointer"
             >
-              {/* Project Image/Gradient */}
-              <div
-                className={`relative h-48 bg-gradient-to-br ${project.gradient} overflow-hidden`}
-              >
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300"></div>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {/* Project Image */}
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/40 transition-colors duration-300"></div>
+                
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-primary/90">
                   <div className="flex gap-4">
                     <Button
                       size="icon"
@@ -90,7 +105,7 @@ const Portfolio = () => {
 
               {/* Project Info */}
               <div className="p-6 space-y-3">
-                <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+                <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wide">
                   {project.category}
                 </div>
                 <h3 className="text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
@@ -108,7 +123,7 @@ const Portfolio = () => {
         <div className="text-center mt-12">
           <Button
             size="lg"
-            className="bg-gradient-primary hover:shadow-glow transition-all duration-300 hover:scale-105 font-semibold"
+            className="bg-gradient-primary hover:shadow-glow transition-all duration-300 hover:scale-105 font-semibold text-lg px-8"
           >
             View Complete Portfolio
           </Button>
