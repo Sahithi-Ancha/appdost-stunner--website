@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Award, Users, Briefcase, Star } from 'lucide-react';
+import { Award, Users, Briefcase, Globe } from 'lucide-react';
 
 const Stats = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,10 +23,10 @@ const Stats = () => {
   }, []);
 
   const stats = [
-    { icon: Briefcase, label: 'Projects Completed', value: 150, suffix: '+' },
-    { icon: Users, label: 'Happy Clients', value: 200, suffix: '+' },
-    { icon: Award, label: 'Awards Won', value: 25, suffix: '' },
-    { icon: Star, label: 'Team Members', value: 50, suffix: '+' },
+    { icon: Briefcase, label: 'Successful Launches', value: 180, suffix: '+' },
+    { icon: Users, label: 'Satisfied Partners', value: 250, suffix: '+' },
+    { icon: Award, label: 'Industry Awards', value: 32, suffix: '' },
+    { icon: Globe, label: 'Countries Served', value: 15, suffix: '+' },
   ];
 
   const Counter = ({ end, duration = 2000 }: { end: number; duration?: number }) => {
@@ -59,6 +59,13 @@ const Stats = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
+            Impact That Speaks
+          </h2>
+          <p className="text-white/90 text-lg">Trusted by businesses worldwide</p>
+        </div>
+
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <div
@@ -66,11 +73,11 @@ const Stats = () => {
               className="text-center space-y-4 animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm">
                 <stat.icon className="w-8 h-8 text-white" />
               </div>
               <div>
-                <p className="text-4xl md:text-5xl font-bold text-white mb-2">
+                <p className="text-4xl md:text-5xl font-heading font-bold text-white mb-2">
                   {isVisible && <Counter end={stat.value} />}
                   {stat.suffix}
                 </p>

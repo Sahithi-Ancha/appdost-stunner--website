@@ -26,12 +26,12 @@ const Footer = () => {
                 <span className="text-2xl font-bold text-primary-foreground">A</span>
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-background">AppDost</h3>
-                <p className="text-xs text-background/70 font-medium">COMPLETE IT SOLUTION</p>
+                <h3 className="text-2xl font-heading font-bold text-background">AppDost</h3>
+                <p className="text-xs text-background/70 font-semibold tracking-wide">COMPLETE IT SOLUTION</p>
               </div>
             </div>
             <p className="text-background/80 leading-relaxed">
-              Transforming ideas into digital reality since 2025. Your trusted partner for comprehensive IT solutions.
+              Building the future of digital innovation since 2025. Where creativity meets technology to create extraordinary experiences.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (

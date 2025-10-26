@@ -1,43 +1,43 @@
-import { Monitor, Smartphone, Cloud, Database, Shield, Zap } from 'lucide-react';
+import { Code, Palette, Rocket, Users, TrendingUp, Lightbulb } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 
 const Services = () => {
   const services = [
     {
-      icon: Monitor,
-      title: 'Web Development',
-      description: 'Custom web applications built with modern frameworks and best practices for optimal performance.',
-      gradient: 'from-blue-500 to-cyan-500',
+      icon: Code,
+      title: 'Custom Development',
+      description: 'Tailored software solutions built with cutting-edge technologies to match your unique business needs.',
+      gradient: 'from-emerald-500 to-teal-500',
     },
     {
-      icon: Smartphone,
-      title: 'Mobile App Development',
-      description: 'Native and cross-platform mobile applications that deliver exceptional user experiences.',
+      icon: Palette,
+      title: 'UI/UX Design',
+      description: 'Beautiful, intuitive interfaces that create memorable user experiences and drive engagement.',
+      gradient: 'from-orange-500 to-amber-500',
+    },
+    {
+      icon: Rocket,
+      title: 'Product Strategy',
+      description: 'Strategic planning and roadmapping to turn your vision into a successful digital product.',
+      gradient: 'from-cyan-500 to-blue-500',
+    },
+    {
+      icon: Users,
+      title: 'Team Augmentation',
+      description: 'Scale your team with our skilled developers and designers who integrate seamlessly.',
       gradient: 'from-purple-500 to-pink-500',
     },
     {
-      icon: Cloud,
-      title: 'Cloud Solutions',
-      description: 'Scalable cloud infrastructure and migration services for modern businesses.',
-      gradient: 'from-green-500 to-emerald-500',
+      icon: TrendingUp,
+      title: 'Digital Marketing',
+      description: 'Data-driven marketing strategies to grow your online presence and reach your audience.',
+      gradient: 'from-rose-500 to-red-500',
     },
     {
-      icon: Database,
-      title: 'Database Management',
-      description: 'Robust database design, optimization, and maintenance for your critical data.',
-      gradient: 'from-orange-500 to-red-500',
-    },
-    {
-      icon: Shield,
-      title: 'Cybersecurity',
-      description: 'Comprehensive security solutions to protect your digital assets and data.',
-      gradient: 'from-indigo-500 to-purple-500',
-    },
-    {
-      icon: Zap,
-      title: 'Performance Optimization',
-      description: 'Speed up your applications with expert optimization and best practices.',
-      gradient: 'from-yellow-500 to-orange-500',
+      icon: Lightbulb,
+      title: 'Innovation Consulting',
+      description: 'Expert guidance on emerging technologies and digital transformation strategies.',
+      gradient: 'from-violet-500 to-purple-500',
     },
   ];
 
@@ -50,14 +50,12 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Our{' '}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Services
-            </span>
+          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4">
+            What We{' '}
+            <span className="bg-gradient-primary bg-clip-text text-transparent">Offer</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive IT solutions tailored to your business needs
+            End-to-end digital solutions designed to accelerate your growth
           </p>
         </div>
 
@@ -77,21 +75,21 @@ const Services = () => {
               <div className="relative p-8 space-y-4">
                 {/* Icon */}
                 <div
-                  className={`w-16 h-16 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-soft group-hover:shadow-glow group-hover:scale-110 transition-all duration-300`}
+                  className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-soft group-hover:shadow-glow group-hover:scale-110 transition-all duration-300`}
                 >
                   <service.icon className="w-8 h-8 text-white" />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                <h3 className="text-2xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">{service.description}</p>
 
                 {/* Learn More Link */}
                 <div className="pt-4">
-                  <span className="text-primary font-medium inline-flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Learn More
+                  <span className="text-primary font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+                    Discover More
                     <span className="text-xl">→</span>
                   </span>
                 </div>

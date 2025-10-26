@@ -49,10 +49,10 @@ const Navbar = () => {
               </div>
             </div>
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h1 className="text-2xl font-heading font-bold bg-gradient-primary bg-clip-text text-transparent">
                 AppDost
               </h1>
-              <p className="text-xs text-muted-foreground font-medium">COMPLETE IT SOLUTION</p>
+              <p className="text-xs text-muted-foreground font-semibold tracking-wide">COMPLETE IT SOLUTION</p>
             </div>
           </div>
 
@@ -62,7 +62,7 @@ const Navbar = () => {
               <button
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
-                className="text-foreground hover:text-primary font-medium transition-colors duration-300 relative group"
+                className="text-foreground hover:text-primary font-semibold transition-colors duration-300 relative group"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>

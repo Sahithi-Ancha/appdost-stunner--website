@@ -52,8 +52,13 @@ export default {
       },
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',
+        'gradient-secondary': 'var(--gradient-secondary)',
         'gradient-light': 'var(--gradient-light)',
         'gradient-hero': 'var(--gradient-hero)',
+      },
+      fontFamily: {
+        'sans': ['Space Grotesk', 'system-ui', 'sans-serif'],
+        'heading': ['Outfit', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         'soft': 'var(--shadow-sm)',

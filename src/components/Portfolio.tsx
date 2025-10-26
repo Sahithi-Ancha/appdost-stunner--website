@@ -5,40 +5,40 @@ import { Button } from '@/components/ui/button';
 const Portfolio = () => {
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      category: 'Web Development',
-      description: 'Modern e-commerce solution with advanced features and seamless checkout experience.',
+      title: 'FinTrack Pro',
+      category: 'Financial Technology',
+      description: 'Next-generation financial management platform with AI-powered insights and analytics.',
+      gradient: 'from-emerald-600 to-teal-600',
+    },
+    {
+      title: 'MediCare Connect',
+      category: 'Healthcare Platform',
+      description: 'Comprehensive telehealth solution connecting patients with healthcare providers seamlessly.',
       gradient: 'from-blue-600 to-cyan-600',
     },
     {
-      title: 'Healthcare App',
-      category: 'Mobile Development',
-      description: 'Patient management system with appointment scheduling and telemedicine features.',
-      gradient: 'from-green-600 to-emerald-600',
-    },
-    {
-      title: 'Finance Dashboard',
-      category: 'Web Development',
-      description: 'Real-time financial analytics dashboard with advanced data visualization.',
+      title: 'EduVerse',
+      category: 'Education Technology',
+      description: 'Interactive learning platform with gamification and personalized learning paths.',
       gradient: 'from-purple-600 to-pink-600',
     },
     {
-      title: 'Food Delivery App',
-      category: 'Mobile Development',
-      description: 'On-demand food delivery platform with live tracking and smart recommendations.',
-      gradient: 'from-orange-600 to-red-600',
+      title: 'ShopFlow',
+      category: 'E-Commerce',
+      description: 'Modern retail platform with AI recommendations and seamless checkout experience.',
+      gradient: 'from-orange-600 to-amber-600',
     },
     {
-      title: 'Education Portal',
-      category: 'Web Development',
-      description: 'Comprehensive learning management system with interactive course content.',
-      gradient: 'from-indigo-600 to-purple-600',
+      title: 'TravelHub',
+      category: 'Travel & Tourism',
+      description: 'All-in-one travel planning and booking platform with real-time updates.',
+      gradient: 'from-rose-600 to-red-600',
     },
     {
-      title: 'Fitness Tracker',
-      category: 'Mobile Development',
-      description: 'Personal fitness app with workout plans, nutrition tracking, and progress analytics.',
-      gradient: 'from-teal-600 to-cyan-600',
+      title: 'GreenEnergy Dashboard',
+      category: 'Sustainability',
+      description: 'Real-time energy monitoring and optimization platform for sustainable living.',
+      gradient: 'from-green-600 to-emerald-600',
     },
   ];
 
@@ -47,14 +47,12 @@ const Portfolio = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Our{' '}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Portfolio
-            </span>
+          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4">
+            Featured{' '}
+            <span className="bg-gradient-primary bg-clip-text text-transparent">Projects</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Showcasing our best work and successful projects
+            Explore our portfolio of innovative solutions and success stories
           </p>
         </div>
 
@@ -92,10 +90,10 @@ const Portfolio = () => {
 
               {/* Project Info */}
               <div className="p-6 space-y-3">
-                <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
                   {project.category}
                 </div>
-                <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
@@ -110,9 +108,9 @@ const Portfolio = () => {
         <div className="text-center mt-12">
           <Button
             size="lg"
-            className="bg-gradient-primary hover:shadow-glow transition-all duration-300 hover:scale-105"
+            className="bg-gradient-primary hover:shadow-glow transition-all duration-300 hover:scale-105 font-semibold"
           >
-            View All Projects
+            View Complete Portfolio
           </Button>
         </div>
       </div>
