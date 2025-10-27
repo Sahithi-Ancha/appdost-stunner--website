@@ -4,40 +4,40 @@ import { Card } from '@/components/ui/card';
 const Services = () => {
   const services = [
     {
-      icon: Code,
-      title: 'Custom Development',
-      description: 'Tailored software solutions built with cutting-edge technologies to match your unique business needs.',
-      gradient: 'from-emerald-500 to-teal-500',
+      icon: Palette,
+      title: 'UI/UX Designing',
+      description: 'Creating stunning, user-centric designs that elevate your brand and deliver exceptional user experiences.',
+      gradient: 'from-blue-500 to-cyan-500',
     },
     {
-      icon: Palette,
-      title: 'UI/UX Design',
-      description: 'Beautiful, intuitive interfaces that create memorable user experiences and drive engagement.',
-      gradient: 'from-orange-500 to-amber-500',
+      icon: Code,
+      title: 'Android App Development',
+      description: 'Native Android applications built with modern frameworks, optimized for performance and scalability.',
+      gradient: 'from-green-500 to-emerald-500',
     },
     {
       icon: Rocket,
-      title: 'Product Strategy',
-      description: 'Strategic planning and roadmapping to turn your vision into a successful digital product.',
-      gradient: 'from-cyan-500 to-blue-500',
-    },
-    {
-      icon: Users,
-      title: 'Team Augmentation',
-      description: 'Scale your team with our skilled developers and designers who integrate seamlessly.',
+      title: 'Web Development',
+      description: 'Full-stack web solutions using cutting-edge technologies to bring your digital vision to life.',
       gradient: 'from-purple-500 to-pink-500',
     },
     {
+      icon: Users,
+      title: 'Cloud Infrastructure',
+      description: 'Scalable cloud solutions with AWS, Azure, and GCP for reliable, high-performance applications.',
+      gradient: 'from-orange-500 to-red-500',
+    },
+    {
       icon: TrendingUp,
-      title: 'Digital Marketing',
-      description: 'Data-driven marketing strategies to grow your online presence and reach your audience.',
-      gradient: 'from-rose-500 to-red-500',
+      title: 'CRM Software',
+      description: 'Custom CRM solutions to streamline your business processes and enhance customer relationships.',
+      gradient: 'from-indigo-500 to-blue-500',
     },
     {
       icon: Lightbulb,
-      title: 'Innovation Consulting',
-      description: 'Expert guidance on emerging technologies and digital transformation strategies.',
-      gradient: 'from-violet-500 to-purple-500',
+      title: 'Cyber Security',
+      description: 'Comprehensive security solutions to protect your digital assets and ensure data integrity.',
+      gradient: 'from-red-500 to-rose-500',
     },
   ];
 

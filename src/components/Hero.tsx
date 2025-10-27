@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import AnimatedBackground from './AnimatedBackground';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,32 +26,26 @@ const Hero = () => {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero pt-20"
     >
-      {/* Animated Background Elements */}
+      {/* Animated Background */}
+      <AnimatedBackground />
+      
+      {/* Gradient Blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float"
+          className="absolute top-20 left-10 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-float"
           style={{
             transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
             transition: 'transform 0.3s ease-out',
           }}
         ></div>
         <div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float-slow"
+          className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-secondary/30 rounded-full blur-3xl animate-float-slow"
           style={{
             transform: `translate(${-mousePosition.x}px, ${-mousePosition.y}px)`,
             transition: 'transform 0.3s ease-out',
           }}
         ></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl"></div>
-        
-        {/* Orbiting Circles */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="relative w-[500px] h-[500px]">
-            <div className="absolute inset-0 border-2 border-primary/20 rounded-full animate-spin" style={{ animationDuration: '20s' }}></div>
-            <div className="absolute inset-8 border-2 border-secondary/20 rounded-full animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}></div>
-            <div className="absolute inset-16 border-2 border-accent/20 rounded-full animate-spin" style={{ animationDuration: '25s' }}></div>
-          </div>
-        </div>
+        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
