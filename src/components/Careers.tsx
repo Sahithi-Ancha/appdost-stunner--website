@@ -1,8 +1,31 @@
 import { Briefcase, MapPin, Clock, ArrowRight } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import careersHero from '@/assets/careers-hero.jpg';
 
 const Careers = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById('careers');
+    if (element) observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
   const openings = [
     {
       title: 'Senior Full Stack Developer',
@@ -72,17 +95,40 @@ const Careers = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4">
-            Join Our{' '}
-            <span className="bg-gradient-primary bg-clip-text text-transparent">Team</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Be part of a dynamic team that's shaping the future of technology. 
-            We're always looking for talented individuals who are passionate about innovation.
-          </p>
-        </div>
+        {/* Hero Image */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.8 }}
+          className="relative h-64 md:h-96 rounded-3xl overflow-hidden mb-16 shadow-2xl"
+        >
+          <img 
+            src={careersHero} 
+            alt="Careers at AppDost" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-transparent flex items-center">
+            <div className="max-w-2xl px-8 md:px-16">
+              <motion.h2 
+                initial={{ opacity: 0, x: -50 }}
+                animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-3xl md:text-5xl font-heading font-bold text-white mb-4"
+              >
+                Join Our{' '}
+                <span className="text-secondary">Team</span>
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, x: -50 }}
+                animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-lg md:text-xl text-white/90"
+              >
+                Be part of a dynamic team that's shaping the future of technology
+              </motion.p>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Benefits Section */}
         <div className="mb-16 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
@@ -110,11 +156,13 @@ const Careers = () => {
           
           <div className="grid md:grid-cols-2 gap-6">
             {openings.map((job, index) => (
-              <Card
+              <motion.div
                 key={index}
-                className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:shadow-glow transition-all duration-500 hover:-translate-y-2 cursor-pointer"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
               >
+                <Card className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:shadow-glow transition-all duration-500 hover:-translate-y-2 cursor-pointer h-full">
                 {/* Gradient Overlay */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${job.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
@@ -163,6 +211,7 @@ const Careers = () => {
                   </Button>
                 </div>
               </Card>
+            </motion.div>
             ))}
           </div>
         </div>

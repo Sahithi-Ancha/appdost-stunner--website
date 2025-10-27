@@ -2,6 +2,8 @@ import { ExternalLink, Github } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import AnimatedBackground from './AnimatedBackground';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import project1 from '@/assets/project-1.jpg';
 import project2 from '@/assets/project-2.jpg';
 import project3 from '@/assets/project-3.jpg';
@@ -10,6 +12,26 @@ import project5 from '@/assets/project-5.jpg';
 import project6 from '@/assets/project-6.jpg';
 
 const Portfolio = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById('portfolio');
+    if (element) observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
   const projects = [
     {
       title: 'FinTrack Pro',
@@ -56,7 +78,12 @@ const Portfolio = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4">
             Featured{' '}
             <span className="bg-gradient-primary bg-clip-text text-transparent">Projects</span>
@@ -64,15 +91,18 @@ const Portfolio = () => {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Explore our portfolio of innovative solutions and success stories
           </p>
-        </div>
+        </motion.div>
 
         {/* Portfolio Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card
+            <motion.div
               key={index}
-              className="group overflow-hidden bg-card border-border hover:shadow-floating transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
             >
+              <Card className="group overflow-hidden bg-card border-border hover:shadow-floating transition-all duration-500 hover:-translate-y-2 cursor-pointer h-full">
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
@@ -115,7 +145,8 @@ const Portfolio = () => {
                   {project.description}
                 </p>
               </div>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
         </div>
 

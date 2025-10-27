@@ -1,7 +1,29 @@
 import { Code, Palette, Rocket, Users, TrendingUp, Lightbulb } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const Services = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById('services');
+    if (element) observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
   const services = [
     {
       icon: Palette,

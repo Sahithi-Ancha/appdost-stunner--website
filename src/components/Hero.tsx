@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import AnimatedBackground from './AnimatedBackground';
+import { motion } from 'framer-motion';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -51,19 +52,25 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <div className="flex flex-col items-center text-center space-y-8">
           {/* Badge */}
-          <div
-            className={`inline-flex items-center gap-2 px-6 py-3 bg-card/80 backdrop-blur-xl rounded-full shadow-soft border border-primary/20 animate-scale-in hover:scale-105 transition-transform duration-300 cursor-pointer ${
-              isVisible ? 'opacity-100' : 'opacity-0'
-            }`}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-card/80 backdrop-blur-xl rounded-full shadow-soft border border-primary/20 hover:scale-105 transition-transform duration-300 cursor-pointer"
           >
             <Sparkles className="w-5 h-5 text-primary animate-pulse" />
             <span className="text-sm font-semibold text-foreground">
               Innovation Meets Excellence in Technology
             </span>
-          </div>
+          </motion.div>
 
           {/* Main Headline */}
-          <div className={`space-y-6 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-6"
+          >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold leading-tight max-w-5xl">
               Building The{' '}
               <span className="bg-gradient-primary bg-clip-text text-transparent relative inline-block">
@@ -79,18 +86,23 @@ const Hero = () => {
             </h1>
 
             {/* Description */}
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-medium">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-medium"
+            >
               We craft exceptional digital experiences through cutting-edge technology and creative
               solutions. From concept to deployment, we're your partner in digital transformation.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* CTA Buttons */}
-          <div
-            className={`flex flex-wrap gap-4 justify-center ${
-              isVisible ? 'animate-fade-in-up' : 'opacity-0'
-            }`}
-            style={{ animationDelay: '0.2s' }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-wrap gap-4 justify-center"
           >
             <Button
               size="lg"
@@ -106,36 +118,38 @@ const Hero = () => {
             >
               Explore Our Work
             </Button>
-          </div>
+          </motion.div>
 
           {/* Trust Indicators */}
-          <div
-            className={`flex flex-wrap items-center justify-center gap-12 pt-12 ${
-              isVisible ? 'animate-fade-in-up' : 'opacity-0'
-            }`}
-            style={{ animationDelay: '0.4s' }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-wrap items-center justify-center gap-12 pt-12"
           >
-            <div className="text-center group cursor-pointer">
-              <p className="text-4xl md:text-5xl font-heading font-black bg-gradient-primary bg-clip-text text-transparent group-hover:scale-110 transition-transform">
-                100%
-              </p>
-              <p className="text-sm text-muted-foreground font-bold mt-2 tracking-wide">Client Satisfaction</p>
-            </div>
-            <div className="hidden sm:block w-px h-16 bg-gradient-primary"></div>
-            <div className="text-center group cursor-pointer">
-              <p className="text-4xl md:text-5xl font-heading font-black bg-gradient-primary bg-clip-text text-transparent group-hover:scale-110 transition-transform">
-                5+
-              </p>
-              <p className="text-sm text-muted-foreground font-bold mt-2 tracking-wide">Years Experience</p>
-            </div>
-            <div className="hidden sm:block w-px h-16 bg-gradient-primary"></div>
-            <div className="text-center group cursor-pointer">
-              <p className="text-4xl md:text-5xl font-heading font-black bg-gradient-primary bg-clip-text text-transparent group-hover:scale-110 transition-transform">
-                24/7
-              </p>
-              <p className="text-sm text-muted-foreground font-bold mt-2 tracking-wide">Support Available</p>
-            </div>
-          </div>
+            {[
+              { value: '100%', label: 'Client Satisfaction' },
+              { value: '5+', label: 'Years Experience' },
+              { value: '24/7', label: 'Support Available' },
+            ].map((stat, index) => (
+              <>
+                <motion.div
+                  key={stat.label}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                  className="text-center group cursor-pointer"
+                >
+                  <p className="text-4xl md:text-5xl font-heading font-black bg-gradient-primary bg-clip-text text-transparent">
+                    {stat.value}
+                  </p>
+                  <p className="text-sm text-muted-foreground font-bold mt-2 tracking-wide">
+                    {stat.label}
+                  </p>
+                </motion.div>
+                {index < 2 && <div className="hidden sm:block w-px h-16 bg-gradient-primary"></div>}
+              </>
+            ))}
+          </motion.div>
         </div>
       </div>
 

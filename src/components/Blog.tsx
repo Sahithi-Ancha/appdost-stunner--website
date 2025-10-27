@@ -1,8 +1,33 @@
 import { Calendar, Clock, ArrowRight, TrendingUp } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import blog1 from '@/assets/blog-1.jpg';
+import blog2 from '@/assets/blog-2.jpg';
+import blog3 from '@/assets/blog-3.jpg';
 
 const Blog = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById('blog');
+    if (element) observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
   const posts = [
     {
       title: 'The Future of Web Development: Trends to Watch in 2025',
@@ -11,7 +36,7 @@ const Blog = () => {
       date: 'Jan 15, 2025',
       readTime: '8 min read',
       gradient: 'from-blue-500 to-cyan-500',
-      image: 'bg-gradient-to-br from-blue-500/20 to-cyan-500/20',
+      image: blog1,
     },
     {
       title: 'Building Secure Mobile Apps: Best Practices for 2025',
@@ -20,7 +45,7 @@ const Blog = () => {
       date: 'Jan 12, 2025',
       readTime: '6 min read',
       gradient: 'from-green-500 to-emerald-500',
-      image: 'bg-gradient-to-br from-green-500/20 to-emerald-500/20',
+      image: blog2,
     },
     {
       title: 'UI/UX Design Principles That Drive User Engagement',
@@ -29,7 +54,7 @@ const Blog = () => {
       date: 'Jan 10, 2025',
       readTime: '7 min read',
       gradient: 'from-purple-500 to-pink-500',
-      image: 'bg-gradient-to-br from-purple-500/20 to-pink-500/20',
+      image: blog3,
     },
     {
       title: 'Cloud Infrastructure: Scaling Your Business for Growth',
@@ -38,7 +63,7 @@ const Blog = () => {
       date: 'Jan 8, 2025',
       readTime: '10 min read',
       gradient: 'from-orange-500 to-red-500',
-      image: 'bg-gradient-to-br from-orange-500/20 to-red-500/20',
+      image: blog1,
     },
     {
       title: 'CRM Systems: Transforming Customer Relationships',
@@ -47,7 +72,7 @@ const Blog = () => {
       date: 'Jan 5, 2025',
       readTime: '5 min read',
       gradient: 'from-indigo-500 to-blue-500',
-      image: 'bg-gradient-to-br from-indigo-500/20 to-blue-500/20',
+      image: blog2,
     },
     {
       title: 'Cyber Security in 2025: Protecting Your Digital Assets',
@@ -56,28 +81,24 @@ const Blog = () => {
       date: 'Jan 3, 2025',
       readTime: '9 min read',
       gradient: 'from-red-500 to-rose-500',
-      image: 'bg-gradient-to-br from-red-500/20 to-rose-500/20',
+      image: blog3,
     },
   ];
 
-  const categories = [
-    'All Posts',
-    'Web Development',
-    'Mobile Development',
-    'Design',
-    'Cloud Computing',
-    'Security',
-  ];
+  const categories = ['All Posts', 'Web Development', 'Mobile Development', 'Design', 'Cloud Computing', 'Security'];
 
   return (
     <section id="blog" className="py-24 bg-gradient-to-b from-background via-secondary/5 to-background relative overflow-hidden">
-      {/* Animated Background Elements */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float-slow"></div>
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-12 animate-fade-in-up">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
           <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4">
             Latest from Our{' '}
             <span className="bg-gradient-primary bg-clip-text text-transparent">Blog</span>
@@ -85,10 +106,9 @@ const Blog = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Insights, tutorials, and industry trends from our team of experts
           </p>
-        </div>
+        </motion.div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap gap-3 justify-center mb-12 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+        <div className="flex flex-wrap gap-3 justify-center mb-12">
           {categories.map((category, index) => (
             <button
               key={index}
@@ -103,107 +123,61 @@ const Blog = () => {
           ))}
         </div>
 
-        {/* Featured Post */}
-        <Card
-          className="mb-12 overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:shadow-glow transition-all duration-500 group cursor-pointer animate-fade-in-up"
-          style={{ animationDelay: '0.2s' }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className={`${posts[0].image} relative overflow-hidden min-h-[300px]`}>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 group-hover:scale-110 transition-transform duration-700"></div>
-              <div className="absolute top-4 left-4">
-                <span className="inline-block px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-bold text-primary">
-                  Featured Post
-                </span>
-              </div>
-            </div>
-            <div className="p-8 flex flex-col justify-center space-y-4">
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                <span className={`px-3 py-1 bg-gradient-to-r ${posts[0].gradient} text-white rounded-full font-semibold`}>
-                  {posts[0].category}
-                </span>
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4" />
-                  <span>{posts[0].date}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4" />
-                  <span>{posts[0].readTime}</span>
+          <Card className="mb-12 overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:shadow-glow transition-all duration-500 group cursor-pointer">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="relative overflow-hidden min-h-[300px]">
+                <img src={posts[0].image} alt={posts[0].title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20"></div>
+                <div className="absolute top-4 left-4">
+                  <span className="inline-block px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-bold text-primary">Featured Post</span>
                 </div>
               </div>
-              <h3 className="text-3xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
-                {posts[0].title}
-              </h3>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                {posts[0].excerpt}
-              </p>
-              <Button variant="outline" className="w-fit group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all">
-                Read More
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <div className="p-8 flex flex-col justify-center space-y-4">
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <span className={`px-3 py-1 bg-gradient-to-r ${posts[0].gradient} text-white rounded-full font-semibold`}>{posts[0].category}</span>
+                  <div className="flex items-center gap-2"><Calendar className="w-4 h-4" /><span>{posts[0].date}</span></div>
+                  <div className="flex items-center gap-2"><Clock className="w-4 h-4" /><span>{posts[0].readTime}</span></div>
+                </div>
+                <h3 className="text-3xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">{posts[0].title}</h3>
+                <p className="text-muted-foreground text-lg leading-relaxed">{posts[0].excerpt}</p>
+                <Button variant="outline" className="w-fit group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all">
+                  Read More<ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </div>
             </div>
-          </div>
-        </Card>
+          </Card>
+        </motion.div>
 
-        {/* Blog Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.slice(1).map((post, index) => (
-            <Card
-              key={index}
-              className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:shadow-glow transition-all duration-500 hover:-translate-y-2 cursor-pointer"
-              style={{ animationDelay: `${(index + 3) * 0.1}s` }}
-            >
-              {/* Image */}
-              <div className={`${post.image} h-48 relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 group-hover:scale-110 transition-transform duration-700"></div>
-                <div className="absolute top-4 left-4">
-                  <span className={`inline-block px-3 py-1 bg-gradient-to-r ${post.gradient} text-white rounded-full text-xs font-bold`}>
-                    {post.category}
-                  </span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6 space-y-4">
-                <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-3 h-3" />
-                    <span>{post.date}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    <span>{post.readTime}</span>
+            <motion.div key={index} initial={{ opacity: 0, y: 50 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}>
+              <Card className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:shadow-glow transition-all duration-500 hover:-translate-y-2 cursor-pointer h-full">
+                <div className="h-48 relative overflow-hidden">
+                  <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"></div>
+                  <div className="absolute top-4 left-4">
+                    <span className={`inline-block px-3 py-1 bg-gradient-to-r ${post.gradient} text-white rounded-full text-xs font-bold`}>{post.category}</span>
                   </div>
                 </div>
-
-                <h4 className="text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                  {post.title}
-                </h4>
-
-                <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
-                  {post.excerpt}
-                </p>
-
-                <div className="pt-2">
-                  <span className="text-primary font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all text-sm">
-                    Read Article
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
+                <div className="p-6 space-y-4">
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-1"><Calendar className="w-3 h-3" /><span>{post.date}</span></div>
+                    <div className="flex items-center gap-1"><Clock className="w-3 h-3" /><span>{post.readTime}</span></div>
+                  </div>
+                  <h4 className="text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">{post.title}</h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">{post.excerpt}</p>
+                  <div className="pt-2">
+                    <span className="text-primary font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all text-sm">Read Article<ArrowRight className="w-4 h-4" /></span>
+                  </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
-        </div>
-
-        {/* Load More CTA */}
-        <div className="mt-16 text-center animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-          <Button
-            size="lg"
-            className="bg-gradient-primary hover:shadow-glow transition-all duration-300 hover:scale-105 text-lg px-8 py-6 font-bold group"
-          >
-            Load More Articles
-            <TrendingUp className="ml-2 w-5 h-5 group-hover:translate-y-[-2px] transition-transform" />
-          </Button>
         </div>
       </div>
     </section>
