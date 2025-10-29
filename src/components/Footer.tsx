@@ -23,11 +23,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <img src={logo} alt="AppDost Logo" className="h-12 w-12" />
-              <div>
-                <h3 className="text-2xl font-heading font-bold text-background">AppDost</h3>
-                <p className="text-xs text-background/80 font-bold tracking-wide">COMPLETE IT SOLUTION</p>
-              </div>
+              <img src={logo} alt="AppDost Logo" className="h-16 w-auto" />
             </div>
             <p className="text-background/80 leading-relaxed">
               Building the future of digital innovation since 2025. Where creativity meets technology to create extraordinary experiences.

@@ -48,15 +48,12 @@ const Navbar = () => {
             className="flex items-center gap-3"
           >
             <motion.img
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
               src={logo}
               alt="AppDost Logo"
-              className="h-10 w-10"
+              className="h-12 w-auto"
             />
-            <span className="text-2xl font-heading font-bold bg-gradient-primary bg-clip-text text-transparent">
-              AppDost
-            </span>
           </motion.div>
 
           {/* Desktop Navigation */}
