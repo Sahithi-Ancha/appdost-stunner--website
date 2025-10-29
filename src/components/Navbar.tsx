@@ -2,12 +2,16 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import logo from '@/assets/logo.png';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    setIsVisible(true);
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -15,95 +19,141 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Careers', href: '#careers' },
-    { name: 'Blog', href: '#blog' },
+  const navItems = [
+    { label: 'Home', href: '#home' },
+    { label: 'About', href: '#about' },
+    { label: 'Services', href: '#services' },
+    { label: 'Portfolio', href: '#portfolio' },
+    { label: 'Careers', href: '#careers' },
+    { label: 'Blog', href: '#blog' },
+    { label: 'Contact', href: '#contact' },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
-  };
-
   return (
-    <nav
+    <motion.nav
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: isVisible ? 0 : -100, opacity: isVisible ? 1 : 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/90 backdrop-blur-xl shadow-elevated'
-          : 'bg-transparent'
+        isScrolled ? 'bg-background/95 backdrop-blur-lg shadow-elevated' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center cursor-pointer group">
-            <img 
-              src={logo} 
-              alt="AppDost Logo" 
-              className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+          <motion.div
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex items-center gap-3"
+          >
+            <motion.img
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.6 }}
+              src={logo}
+              alt="AppDost Logo"
+              className="h-10 w-10"
             />
-          </div>
+            <span className="text-2xl font-heading font-bold bg-gradient-primary bg-clip-text text-transparent">
+              AppDost
+            </span>
+          </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollToSection(link.href)}
-                className="text-foreground hover:text-primary font-semibold transition-colors duration-300 relative group"
+          <div className="hidden md:flex items-center space-x-1">
+            {navItems.map((item, index) => (
+              <motion.a
+                key={item.href}
+                href={item.href}
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.1 * index }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                className="px-4 py-2 text-foreground hover:text-primary font-medium transition-all duration-300 relative group"
               >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
-              </button>
+                {item.label}
+                <motion.span
+                  className="absolute bottom-0 left-0 h-0.5 bg-gradient-primary"
+                  initial={{ width: 0 }}
+                  whileHover={{ width: '100%' }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.a>
             ))}
-            <Button
-              onClick={() => scrollToSection('#contact')}
-              className="bg-gradient-primary hover:shadow-glow transition-all duration-300 hover:scale-105 font-semibold"
-            >
-              Contact Us
-            </Button>
           </div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="hidden md:block"
+          >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                size="lg"
+                className="bg-gradient-primary hover:shadow-glow transition-all duration-300 font-semibold"
+              >
+                Get Started
+              </Button>
+            </motion.div>
+          </motion.div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+          <motion.button
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            whileTap={{ scale: 0.9 }}
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </motion.button>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 animate-fade-in-down">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-left px-4 py-2 hover:bg-muted rounded-lg transition-colors font-semibold"
+        {/* Mobile Navigation */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden py-4 space-y-2 overflow-hidden"
+            >
+              {navItems.map((item, index) => (
+                <motion.a
+                  key={item.href}
+                  href={item.href}
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.1 * index }}
+                  whileTap={{ scale: 0.95 }}
+                  className="block px-4 py-3 text-foreground hover:text-primary hover:bg-muted/50 rounded-lg font-medium transition-all duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {link.name}
-                </button>
+                  {item.label}
+                </motion.a>
               ))}
-              <Button
-                onClick={() => scrollToSection('#contact')}
-                className="bg-gradient-primary mx-4 font-semibold"
+              <motion.div
+                initial={{ x: -50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.5 }}
+                className="px-4 pt-2"
               >
-                Contact Us
-              </Button>
-            </div>
-          </div>
-        )}
+                <Button
+                  size="lg"
+                  className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300 font-semibold"
+                >
+                  Get Started
+                </Button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

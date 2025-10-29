@@ -3,6 +3,7 @@ import { Sparkles, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import AnimatedBackground from './AnimatedBackground';
 import { motion } from 'framer-motion';
+import heroBg from '@/assets/hero-bg.jpg';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,10 +26,22 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero pt-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
     >
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={heroBg} 
+          alt="Hero background" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95"></div>
+      </div>
+      
       {/* Animated Background */}
-      <AnimatedBackground />
+      <div className="absolute inset-0 z-0">
+        <AnimatedBackground />
+      </div>
       
       {/* Gradient Blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

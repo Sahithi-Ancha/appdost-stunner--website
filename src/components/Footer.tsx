@@ -1,4 +1,5 @@
 import { Facebook, Twitter, Linkedin, Instagram, Github } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const Footer = () => {
   const socialLinks = [
@@ -22,9 +23,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-glow">
-                <span className="text-2xl font-bold text-primary-foreground">A</span>
-              </div>
+              <img src={logo} alt="AppDost Logo" className="h-12 w-12" />
               <div>
                 <h3 className="text-2xl font-heading font-bold text-background">AppDost</h3>
                 <p className="text-xs text-background/80 font-bold tracking-wide">COMPLETE IT SOLUTION</p>
